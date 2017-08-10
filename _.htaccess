@@ -1,0 +1,13 @@
+<Files ~ "^\.ht">
+deny from all
+</Files>
+
+# AccessControl referer
+SetEnvIf Referer "^http://prj-mockup\.com\/test\/other\/music\/" chk_url
+SetEnvIf Referer "^https://prj-mockup\.com\/test\/other\/music\/" chk_url
+
+<Files ~ "\.(mp3)$">
+order deny,allow
+deny from all
+allow from env=chk_url 
+</Files>
